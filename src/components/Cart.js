@@ -8,6 +8,7 @@ class Cart extends Component {
       cart: null,
       propdata: null,
       priceamount: 0,
+      total: 0,
     };
   }
   componentDidMount() {
@@ -21,27 +22,39 @@ class Cart extends Component {
       var string = JSON.stringify(pricearray);
       string.replace(/"/g); //"[apple,orange,pear]"
       //console.log(pricearray);
-
-
+      let numberarray = [];
       for (const element of pricearray) {
-        
-        let numberarray = parseInt(element)
+        let pricenumbers = parseInt(element);
+        numberarray.push(pricenumbers);
         console.log(numberarray);
-
       }
-/*
-      pricearray.forEach((element) => {
-        let total = parseInt(pricearray);
-        console.log(total); 
-      });*/
+      const reducer = (accumulator, currentValue) => accumulator + currentValue;
+      let finaltotal = numberarray.reduce(reducer, 0);
+      this.setState({
+        total: finaltotal,
+      });
     }
+
+      
+  
+    document.addEventListener("click", (e) => {
+      if (e.target.classList.contains("xbutton")) {
+        // Removes an element from the document
+      
+        e.parentNode.removeChild(e.parentNode);
+
+        
+      }
+    });
+  
+    
   }
 
   render() {
     if (this.props.cart.length !== 0) {
       var cartitems = this.props.cart.map(function (cartitems) {
         return (
-          <div className="col-sm-12  cartitem" key={cartitems[1]}>
+          <div className="col-sm-12  cartitem" key={cartitems[1]} id={cartitems[1]}>
             <img
               src={cartitems[2]}
               id={cartitems[2]}
@@ -53,6 +66,7 @@ class Cart extends Component {
             <div className="pricebox">
               <p className="cartprice">{cartitems[0]}</p>
             </div>
+            <button  className="xbutton btn btn-danger">Remove</button>
           </div>
         );
       });
@@ -67,8 +81,8 @@ class Cart extends Component {
       <div className="cart-container">
         {cartitems}
         <div className="cartfooter">
-          <h4 className="yourtotal">Your total: $ {this.props.total}</h4>
-          <PaypalButton className="checkoutbutton" total={this.props.total} />
+          <h4 className="yourtotal">Your total: $ {this.state.total}</h4>
+          <PaypalButton className="checkoutbutton" total={this.state.total} />
         </div>
       </div>
     );

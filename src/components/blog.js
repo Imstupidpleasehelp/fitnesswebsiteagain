@@ -23,10 +23,17 @@ class Blog extends Component {
                 className="blog-item-tagline"
                 trigger={blogitems.tagline}
               >
-                <p className="blog-item-fulltext">{blogitems.fulltext}</p>
+              <h4>{blogitems.subheading1}</h4>
+                <p className="blog-item-fulltext">{blogitems.firstparagraph}</p>
+                
+                <p>{blogitems.secondparagraph}</p>
+                <img src={blogitems.image2} alt="" />
+                <h4>{blogitems.subheading2}</h4>
+
+                <p>{blogitems.thirdparagraph}</p>
               </Collapsible>
               <img
-                src={blogitems.image}
+                src={blogitems.previewimage}
                 className=""
                 alt={blogitems.title}
               ></img>
