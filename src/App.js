@@ -24,7 +24,6 @@ class App extends Component {
     }
   
     }
-    
     addToCart (e) {
       this.setState({
         cartAmount: this.state.cartAmount + 1,
@@ -34,7 +33,15 @@ class App extends Component {
         ],
       });
     }
+    /*removefromcart() {
+      this.setState({
+        cartAmount: this.state.cartAmount + 1,
+      })
+    }
+    */
 
+
+    
   
     
 

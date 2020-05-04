@@ -10,8 +10,9 @@ class Cart extends Component {
       priceamount: 0,
       total: 0,
     };
+    
   }
-  componentDidMount() {
+  gettotal() {
     if (this.props.cart.length !== 0) {
       var pricevar = document.getElementsByClassName("cartprice");
       var i;
@@ -28,33 +29,36 @@ class Cart extends Component {
         numberarray.push(pricenumbers);
         console.log(numberarray);
       }
-      const reducer = (accumulator, currentValue) => accumulator + currentValue;
+      const reducer = (accumulator, currentValue) =>
+        accumulator + currentValue;
       let finaltotal = numberarray.reduce(reducer, 0);
       this.setState({
         total: finaltotal,
       });
     }
+  }
+  componentDidMount() {
+      this.gettotal();
+    
 
-      
-  
     document.addEventListener("click", (e) => {
       if (e.target.classList.contains("xbutton")) {
         // Removes an element from the document
-      
-        e.parentNode.removeChild(e.parentNode);
-
-        
+        e.target.parentNode.remove();
+        this.gettotal();
       }
     });
-  
-    
-  }
+}
 
   render() {
     if (this.props.cart.length !== 0) {
       var cartitems = this.props.cart.map(function (cartitems) {
         return (
-          <div className="col-sm-12  cartitem" key={cartitems[1]} id={cartitems[1]}>
+          <div
+            className="col-sm-12  cartitem"
+            key={cartitems[1]}
+            id={cartitems[1]}
+          >
             <img
               src={cartitems[2]}
               id={cartitems[2]}
@@ -66,7 +70,7 @@ class Cart extends Component {
             <div className="pricebox">
               <p className="cartprice">{cartitems[0]}</p>
             </div>
-            <button  className="xbutton btn btn-danger">Remove</button>
+            <button className="xbutton btn btn-danger">Remove</button>
           </div>
         );
       });
