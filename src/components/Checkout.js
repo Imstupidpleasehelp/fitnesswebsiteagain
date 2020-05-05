@@ -33,7 +33,7 @@ export default class PaypalButton extends React.Component {
 
     let env = "sandbox"; // you can set this string to 'production'
     let currency = "USD"; // you can set this string from your props or state
-    let total = 1; // this is the total amount (based on currency) to charge
+    let total = this.props.total; // this is the total amount (based on currency) to charge
     // Document on Paypal's currency code: https://developer.paypal.com/docs/classic/api/currency_codes/
 
     const client = {

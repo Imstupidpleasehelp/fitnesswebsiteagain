@@ -6,31 +6,11 @@ import "animate.css/animate.min.css";
 import "font-awesome/css/font-awesome.min.css";
 
 class Services extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      cartAmount: null,
-      cart: null,
-      propdata: {},
-    };
-
-    document.addEventListener("click", (e) => {
-      if (e.target.classList.contains("button")) {
-        this.props.addToCart(e);
-        e.target.classList.remove("button");
-        e.target.classList.add("btn-success");
-
-        e.target.innerHTML = "Added to cart";
-      }
-    });
-  }
+ 
 
   render() {
     if (this.props.propdata) {
-      var serviceitems = this.props.propdata.main.serviceitems.map(function (
-        serviceitems
-      ) {
+      var serviceitems = this.props.propdata.main.serviceitems.map( (serviceitems) => {
         return (
           <div className="col-sm-12  serviceitem" key={serviceitems.title}>
             <h5 className="">{serviceitems.title}</h5>
@@ -52,6 +32,7 @@ class Services extends React.Component {
               id={serviceitems.image}
               value={serviceitems.price}
               className="button"
+              onClick={e => this.props.addToCart(e)}
             >
               Add to cart
             </button>

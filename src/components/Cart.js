@@ -10,7 +10,6 @@ class Cart extends Component {
       priceamount: 0,
       total: 0,
     };
-    
   }
   gettotal() {
     if (this.props.cart.length !== 0) {
@@ -29,8 +28,7 @@ class Cart extends Component {
         numberarray.push(pricenumbers);
         console.log(numberarray);
       }
-      const reducer = (accumulator, currentValue) =>
-        accumulator + currentValue;
+      const reducer = (accumulator, currentValue) => accumulator + currentValue;
       let finaltotal = numberarray.reduce(reducer, 0);
       this.setState({
         total: finaltotal,
@@ -38,17 +36,19 @@ class Cart extends Component {
     }
   }
   componentDidMount() {
-      this.gettotal();
-    
+    this.gettotal();
 
     document.addEventListener("click", (e) => {
       if (e.target.classList.contains("xbutton")) {
         // Removes an element from the document
         e.target.parentNode.remove();
+        
+        
         this.gettotal();
+        this.props.Removefromcart();
       }
     });
-}
+  }
 
   render() {
     if (this.props.cart.length !== 0) {
@@ -70,7 +70,9 @@ class Cart extends Component {
             <div className="pricebox">
               <p className="cartprice">{cartitems[0]}</p>
             </div>
-            <button className="xbutton btn btn-danger">Remove</button>
+            <button className="xbutton btn btn-danger"
+            
+            >Remove</button>
           </div>
         );
       });

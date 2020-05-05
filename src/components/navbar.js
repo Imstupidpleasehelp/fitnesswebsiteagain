@@ -45,7 +45,7 @@ class Navbar extends Component {
             </i>
           </NavLink>
           <NavLink to="/Cart" className="menu-item">
-            {this.props.cartAmount}
+            {this.props.cart.length}
             <FaShoppingCart />
           </NavLink>
           <NavLink to="/Contact" className="menu-item">
