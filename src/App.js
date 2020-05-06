@@ -9,6 +9,7 @@ import Header from "./components/header";
 import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
 import { Route, BrowserRouter } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 class App extends Component {
   constructor(props) {
@@ -19,41 +20,64 @@ class App extends Component {
       propdata: null,
       cartAmount: 0,
       cart: [],
-      total: 0,
-      globalnumberarray: [],
+      total: 0
     };
   }
-  Removefromcart(e) {
-    this.setState({
-      cart: [
-        this.state.cart.splice([e.target.value, e.target.name, e.target.id]),
-      ],
-    });
 
-    //e.target.parentNode.remove();
-    // this.gettotal();
-  }
-  addToCart(e) {
-    this.setState({
-      cart: [...this.state.cart, [e.target.value, e.target.name, e.target.id]],
-    });
-    e.target.classList.add("btn-success");
-    e.target.classList.remove("button");
-    e.target.innerHTML = "Added to cart";
+  // the item id and price
+  Removefromcart = (id, price) => {
+    // using an updater function
+    this.setState(state => ({
+      // keep everything except the item with the id that was passed in
+      cart: this.state.cart.filter(item => item.id !== id),
+      // item price - current state total
+      total: state.total - price
+    }));
+  };
+
+  // serviceitems object, destructuring out the properties
+  addToCart({ title, description, fulldescription, price, image }) {
+    // using an updater function
+    this.setState(state => ({
+      cart: [
+        ...this.state.cart,
+        {
+          title,
+          description,
+          fulldescription,
+          price,
+          image,
+          id: uuidv4()
+        }
+      ],
+      // item price + current state total
+      total: state.total + price
+    }));
+
+    // moved to services component
+    // e.target.classList.add("btn-success");
+    // e.target.classList.remove("button");
+    // e.target.innerHTML = "Added to cart";
+
+    // if you want to keep this when switching away and back
+    // you have to add it to the app state
+
+    // BTW, you have no .button class in your CSS
   }
 
   componentDidMount() {
     fetch("/addnewitems.json")
-      .then((res) => res.json())
-      .then((res) => {
+      .then(res => res.json())
+      .then(res => {
         this.setState({
           ...this,
-          propdata: res,
+          propdata: res
         });
       });
   }
 
   render() {
+    console.log("Total", this.state.total);
     return (
       <BrowserRouter>
         <div className="App">
@@ -65,14 +89,14 @@ class App extends Component {
             <Route
               exact
               path="/"
-              render={(props) => (
+              render={props => (
                 <Home {...props} propdata={this.state.propdata} />
               )}
             />
 
             <Route
               path="/Services"
-              render={(props) => (
+              render={props => (
                 <Services
                   {...props}
                   propdata={this.state.propdata}
@@ -84,14 +108,14 @@ class App extends Component {
             />
             <Route
               path="/Blog"
-              render={(props) => (
+              render={props => (
                 <Blog {...props} propdata={this.state.propdata} />
               )}
             />
             <Route path="/contact" component={Contact} />
             <Route
               path="/Cart"
-              render={(props) => (
+              render={props => (
                 <Cart
                   {...props}
                   propdata={this.state.propdata}
@@ -99,13 +123,12 @@ class App extends Component {
                   cartAmount={this.state.cartAmount}
                   total={this.state.total}
                   Removefromcart={this.Removefromcart}
-                  globalnumberarray={this.state.globalnumberarray}
                 />
               )}
             />
             <Route
               path="/Checkout"
-              render={(props) => (
+              render={props => (
                 <Checkout
                   {...props}
                   propdata={this.state.propdata}

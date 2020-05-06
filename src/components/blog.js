@@ -18,27 +18,21 @@ class Blog extends Component {
       ) {
         return (
           <div>
-          <div key={blogitems.title} id={blogitems.title} className="row">
-            <div className="leftcolumn">
-              <img
-                src={blogitems.previewimage}
-                className="fakeimg" height='300px' 
-                alt={blogitems.title}
-              ></img>
-              <p>
-                {blogitems.date}
-              </p>
-              <Collapsible
-                className=""
-                trigger={blogitems.title}
-              >
-             <p>{blogitems.firstparagraph}</p>
-              <p>aaaa</p>
-              </Collapsible>
+            <div key={blogitems.title} id={blogitems.title} className="row">
+              <div className="leftcolumn">
+                <img
+                  src={blogitems.previewimage}
+                  className="fakeimg"
+                  height="300px"
+                  alt={blogitems.title}
+                ></img>
+                <p>{blogitems.date}</p>
+                <Collapsible className="" trigger={blogitems.title}>
+                  <p>{blogitems.firstparagraph}</p>
+                  <p>aaaa</p>
+                </Collapsible>
+              </div>
             </div>
-          
-          </div>
-          
           </div>
         );
       });
@@ -46,9 +40,9 @@ class Blog extends Component {
 
     return (
       <div>
-      <div className="blogtitle">
-        My blog</div>
-        <div className="sidebar">Social media links 
+        <div className="blogtitle">My blog</div>
+        <div className="sidebar">
+          Social media links
           <p>Link 1</p>
           <p>Link 2</p>
           <p> link 3</p>
