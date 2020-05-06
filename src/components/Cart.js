@@ -26,13 +26,15 @@ class Cart extends Component {
       for (const element of pricearray) {
         let pricenumbers = parseInt(element);
         numberarray.push(pricenumbers);
-        console.log(numberarray);
+        
       }
       const reducer = (accumulator, currentValue) => accumulator + currentValue;
       let finaltotal = numberarray.reduce(reducer, 0);
       this.setState({
         total: finaltotal,
       });
+      console.log(this.props.cart)
+      // use numberarray to remove the item from the page ?
     }
   }
   componentDidMount() {
@@ -68,9 +70,9 @@ class Cart extends Component {
 
             <h5 className="">{cartitems[1]}</h5>
             <div className="pricebox">
-              <p className="cartprice">{cartitems[0]}</p>
+              <p className="cartprice" value={cartitems[0]} >{cartitems[0]}</p>
             </div>
-            <button className="xbutton btn btn-danger"
+            <button className="xbutton btn btn-danger" value={cartitems[0]}
             
             >Remove</button>
           </div>

@@ -283,44 +283,60 @@ background-color: blue;
 
 
 /* blog page */ 
-.blogpage {
-  display: inline-block;
-}
-.blogtitle {
-  margin-bottom: 5%;
-  text-align: center;
-  color: skyblue;
-  font-size: 48px;
-  font-weight: bolder;
-}
-.bloggrid {
-  margin-left: auto;
-  margin-right: auto;
-}
-.blog-item-tagline {
-  cursor: pointer;
-}
-.blog-item-fulltext {
-  font-size: 16px;
-  font-style: italic;
-}
-.blog-item-tagline {
-  border: 0 solid;
-  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
-  outline: 1px solid;
+.sidebar {
   
-  outline-offset: 0px;
-  text-shadow: none;
-  transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
-} 
+  float: right;
+ 
+  margin: 5%;
+  border-style: solid;
+  width: 15%;
+  height: 20%;
+  
+}
 
-.blog-item-tagline:hover {
-  border: 1px solid;
-  box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
-  
-  outline-offset: 15px;
-  text-shadow: 1px 1px 2px #427388; 
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+
+.leftcolumn {
+  float: left;
+  width: 80%;
+  margin-left: 5%;
 }
+
+.blogtitle {
+  font-size: 48px;
+  color: skyblue;
+text-align: center;
+float: center;
+margin: 5%;
+margin-top: -8%;
+}
+
+
+/* Fake image */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+
+
 /* cart items */ 
 .cartfooter {
   position: fixed;

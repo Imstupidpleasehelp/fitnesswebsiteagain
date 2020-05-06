@@ -20,11 +20,18 @@ class App extends Component {
       cartAmount: 0,
       cart: [],
       total: 0,
+      globalnumberarray: [],
     };
   }
-  Removefromcart() {
+  Removefromcart(e) {
+    this.setState({
+      cart: [
+        this.state.cart.splice([e.target.value, e.target.name, e.target.id]),
+      ],
+    });
 
-    
+    //e.target.parentNode.remove();
+    // this.gettotal();
   }
   addToCart(e) {
     this.setState({
@@ -34,7 +41,6 @@ class App extends Component {
     e.target.classList.remove("button");
     e.target.innerHTML = "Added to cart";
   }
-  
 
   componentDidMount() {
     fetch("/addnewitems.json")
@@ -73,7 +79,6 @@ class App extends Component {
                   cart={this.state.cart}
                   cartAmount={this.state.cartAmount}
                   addToCart={this.addToCart}
-          
                 />
               )}
             />
@@ -94,6 +99,7 @@ class App extends Component {
                   cartAmount={this.state.cartAmount}
                   total={this.state.total}
                   Removefromcart={this.Removefromcart}
+                  globalnumberarray={this.state.globalnumberarray}
                 />
               )}
             />
@@ -106,7 +112,6 @@ class App extends Component {
                   cart={this.state.cart}
                   cartAmount={this.state.cartAmount}
                   total={this.state.total}
-                  
                 />
               )}
             />

@@ -17,35 +17,42 @@ class Blog extends Component {
         blogitems
       ) {
         return (
-          <div key={blogitems.title} className="col-sm-12">
-            <div className="blog-item">
-              <Collapsible
-                className="blog-item-tagline"
-                trigger={blogitems.tagline}
-              >
-              <h4>{blogitems.subheading1}</h4>
-                <p className="blog-item-fulltext">{blogitems.firstparagraph}</p>
-                
-                <p>{blogitems.secondparagraph}</p>
-                <img src={blogitems.image2} alt="" />
-                <h4>{blogitems.subheading2}</h4>
-
-                <p>{blogitems.thirdparagraph}</p>
-              </Collapsible>
+          <div>
+          <div key={blogitems.title} id={blogitems.title} className="row">
+            <div className="leftcolumn">
               <img
                 src={blogitems.previewimage}
-                className=""
+                className="fakeimg" height='300px' 
                 alt={blogitems.title}
               ></img>
+              <p>
+                {blogitems.date}
+              </p>
+              <Collapsible
+                className=""
+                trigger={blogitems.title}
+              >
+             <p>{blogitems.firstparagraph}</p>
+              <p>aaaa</p>
+              </Collapsible>
             </div>
+          
+          </div>
+          
           </div>
         );
       });
     } else return <h1>Loading...</h1>;
 
     return (
+      <div>
       <div className="blogtitle">
-        <h1>My blog</h1>
+        My blog</div>
+        <div className="sidebar">Social media links 
+          <p>Link 1</p>
+          <p>Link 2</p>
+          <p> link 3</p>
+        </div>
         <div className="blogpage">{blogitems}</div>
       </div>
     );

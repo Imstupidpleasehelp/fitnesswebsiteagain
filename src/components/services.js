@@ -2,7 +2,7 @@ import React from "react";
 
 import Collapsible from "react-collapsible";
 import "bootstrap/dist/css/bootstrap.css";
-import "animate.css/animate.min.css";
+
 import "font-awesome/css/font-awesome.min.css";
 
 class Services extends React.Component {
