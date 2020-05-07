@@ -26,10 +26,11 @@ class Blog extends Component {
                   height="300px"
                   alt={blogitems.title}
                 ></img>
+                <h1>{blogitems.title}</h1>
                 <p>{blogitems.date}</p>
-                <Collapsible className="" trigger={blogitems.title}>
-                  <p>{blogitems.firstparagraph}</p>
-                  <p>aaaa</p>
+                <Collapsible className="blog-item-trigger" trigger='Read more ' transitionTime='200' triggerWhenOpen="Collapse">
+                  <p className="blog-item-text">{blogitems.firstparagraph}</p>
+                  
                 </Collapsible>
               </div>
             </div>
@@ -42,10 +43,10 @@ class Blog extends Component {
       <div>
         <div className="blogtitle">My blog</div>
         <div className="sidebar">
-          Social media links
-          <p>Link 1</p>
-          <p>Link 2</p>
-          <p> link 3</p>
+          Social media links <br />
+         <a href="www.google.com"><i className="fa fa-twitter socialmedialink" ></i></a> 
+         <a href="www.google.com"><i className="fa fa-facebook socialmedialink" ></i></a> 
+         <a href="www.google.com"><i className="fa fa-instagram socialmedialink" ></i></a> 
         </div>
         <div className="blogpage">{blogitems}</div>
       </div>
