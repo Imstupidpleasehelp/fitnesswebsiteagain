@@ -1,5 +1,6 @@
 import React from "react";
 import PaypalExpressBtn from "react-paypal-express-checkout";
+import cogoToast from 'cogo-toast';
 
 export default class PaypalButton extends React.Component {
   constructor(props) {
@@ -15,12 +16,14 @@ export default class PaypalButton extends React.Component {
     const onSuccess = (payment) => {
       // 1, 2, and ... Poof! You made it, everything's fine and dandy!
       console.log("Payment successful!", payment);
+      cogoToast.success("Success!");
       // You can bind the "payment" object's value to your state or props or whatever here, please see below for sample returned data
     };
 
     const onCancel = (data) => {
       // The user pressed "cancel" or closed the PayPal popup
       console.log("Payment cancelled!", data);
+      cogoToast.error("Payment not accepted!");
       // You can bind the "data" object's value to your state or props or whatever here, please see below for sample returned data
     };
 
