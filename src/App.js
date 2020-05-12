@@ -11,10 +11,10 @@ import Checkout from "./components/Checkout";
 import { Route, BrowserRouter } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
+
 class App extends Component {
   constructor(props) {
     super(props);
-
     this.addToCart = this.addToCart.bind(this);
     this.state = {
       propdata: null,
@@ -145,3 +145,4 @@ class App extends Component {
   }
 }
 export default App;
+
