@@ -53,16 +53,8 @@ class App extends Component {
       // item price + current state total
       total: state.total + price
     }));
+    
 
-    // moved to services component
-    // e.target.classList.add("btn-success");
-    // e.target.classList.remove("button");
-    // e.target.innerHTML = "Added to cart";
-
-    // if you want to keep this when switching away and back
-    // you have to add it to the app state
-
-    // BTW, you have no .button class in your CSS
   }
 
   componentDidMount() {
@@ -74,8 +66,9 @@ class App extends Component {
           propdata: res
         });
       });
+      
   }
-
+  
   render() {
     console.log("Total", this.state.total);
     return (
@@ -112,7 +105,7 @@ class App extends Component {
                 <Blog {...props} propdata={this.state.propdata} />
               )}
             />
-            <Route path="/contact" component={Contact} />
+            <Route path="/contact"  handleSubmit={this.handleSubmit} register={this.register} errors={this.errors} onSubmit={this.onSubmit} component={Contact} />
             <Route
               path="/Cart"
               render={props => (
